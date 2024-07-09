@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "./reset";
+
+.btn-cart {
+    &:hover {
+        svg {
+            path {
+                fill: #4f46e5;
+            }
+        }
+    }
+}
+
+.active-cart {
+    svg {
+        path {
+            fill: #4f46e5;
+        }
+    }
+}
