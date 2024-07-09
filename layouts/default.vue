@@ -1,20 +1,33 @@
 <template>
   <div>
     <header class="bg-white">
-      <div class="overlay" v-if="searchSwitch" @click="searchSwitchFunc()"></div>
-      .  <div class="search" v-if="searchSwitch">
-              <input type="text" placeholder="Search..." @input="search()" v-model="searchVal">
-              <button @click="searchSwitchFunc()">x</button>
-              <div class="container">
-                <ul class="serach-list">
-                  <li v-for="item in searchList?.products" :key="item">
-                    <NuxtLink :to="`/product/${item?.id}`" @click="searchSwitchFunc(), searchVal = ''">
-                      {{ item?.title}}
-                    </NuxtLink>
-                  </li>
-                </ul>
-              </div>
+      <div
+        class="overlay"
+        v-if="searchSwitch"
+        @click="searchSwitchFunc()"
+      ></div>
+      .
+      <div class="search" v-if="searchSwitch">
+        <input
+          type="text"
+          placeholder="Search..."
+          @input="search()"
+          v-model="searchVal"
+        />
+        <button @click="searchSwitchFunc()">x</button>
+        <div class="container">
+          <ul class="serach-list">
+            <li v-for="item in searchList?.products" :key="item">
+              <NuxtLink
+                :to="`/product/${item?.id}`"
+                @click="searchSwitchFunc(), (searchVal = '')"
+              >
+                {{ item?.title }}
+              </NuxtLink>
+            </li>
+          </ul>
         </div>
+      </div>
       <nav
         class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
         aria-label="Global"
@@ -31,7 +44,7 @@
         </div>
         <div class="flex lg:hidden">
           <button
-          @click="menuShow = 0"
+            @click="menuShow = 0"
             type="button"
             class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
           >
@@ -54,32 +67,41 @@
         </div>
         <div class="hidden lg:flex lg:gap-x-12">
           <div class="relative">
-
             <div class="flex items-center gap-4">
               <button
-            @click="showFunc()"
-              type="button"
-              class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900"
-              aria-expanded="false"
-            >
-              Categorys
-              <svg
-                class="h-5 w-5 flex-none text-gray-400"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                aria-hidden="true"
+                @click="showFunc()"
+                type="button"
+                class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900"
+                aria-expanded="false"
               >
-                <path
-                  fill-rule="evenodd"
-                  d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                  clip-rule="evenodd"
-                />
-              </svg>
+                Categorys
+                <svg
+                  class="h-5 w-5 flex-none text-gray-400"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
               </button>
 
-               <button class="search-btn" @click="searchSwitchFunc()">
-               <svg style="width: 25px;" data-name="Layer 1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21.07,16.83,19,14.71a3.08,3.08,0,0,0-3.4-.57l-.9-.9a7,7,0,1,0-1.41,1.41l.89.89A3,3,0,0,0,14.71,19l2.12,2.12a3,3,0,0,0,4.24,0A3,3,0,0,0,21.07,16.83Zm-8.48-4.24a5,5,0,1,1,0-7.08A5,5,0,0,1,12.59,12.59Zm7.07,7.07a1,1,0,0,1-1.42,0l-2.12-2.12a1,1,0,0,1,0-1.42,1,1,0,0,1,1.42,0l2.12,2.12A1,1,0,0,1,19.66,19.66Z" fill="#6563ff"/></svg>
-               </button>
+              <button class="search-btn" @click="searchSwitchFunc()">
+                <svg
+                  style="width: 25px"
+                  data-name="Layer 1"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M21.07,16.83,19,14.71a3.08,3.08,0,0,0-3.4-.57l-.9-.9a7,7,0,1,0-1.41,1.41l.89.89A3,3,0,0,0,14.71,19l2.12,2.12a3,3,0,0,0,4.24,0A3,3,0,0,0,21.07,16.83Zm-8.48-4.24a5,5,0,1,1,0-7.08A5,5,0,0,1,12.59,12.59Zm7.07,7.07a1,1,0,0,1-1.42,0l-2.12-2.12a1,1,0,0,1,0-1.42,1,1,0,0,1,1.42,0l2.12,2.12A1,1,0,0,1,19.66,19.66Z"
+                    fill="#6563ff"
+                  />
+                </svg>
+              </button>
             </div>
 
             <!--
@@ -94,30 +116,53 @@
         -->
             <div
               v-if="show"
-              class=" open-categor mt-3 rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5"
+              class="open-categor mt-3 rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5"
             >
-            <button class="close-categor" @click="show = !show">x</button>
-              <NuxtLink @click="show = !show" v-for="item in categorys" :key="item" :to="`/categorys/${item?.slug}`" class="text-sm font-semibold leading-6 text-gray-900"
-            ><span class="category-item">{{ item?.name }}</span>
-          </NuxtLink
-          >
+              <button class="close-categor" @click="show = !show">x</button>
+              <NuxtLink
+                @click="show = !show"
+                v-for="item in categorys"
+                :key="item"
+                :to="`/categorys/${item?.slug}`"
+                class="text-sm font-semibold leading-6 text-gray-900"
+                ><span class="category-item">{{ item?.name }}</span>
+              </NuxtLink>
             </div>
           </div>
-
         </div>
-        <div class=" flex items-center gap-6 hidden lg:flex relative lg:flex-1 lg:justify-end">
+        <div
+          class="flex items-center gap-6 hidden lg:flex relative lg:flex-1 lg:justify-end"
+        >
           <div class="like">
-          <NuxtLink to="/like-page">
-            <button>
-              <!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'
-              'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
-              <svg enable-background="new 0 0 128 128" height="23px"
-              id="Layer_1" version="1.1" viewBox="0 0 128 128" width="23px"
-              xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M127,44.205c0-18.395-14.913-33.308-33.307-33.308c-12.979,0-24.199,7.441-29.692,18.276  c-5.497-10.835-16.714-18.274-29.694-18.274C15.912,10.898,1,25.81,1,44.205C1,79,56.879,117.104,64.001,117.104  C71.124,117.104,127,79.167,127,44.205z" fill="transparent" stroke="#4f46e5" stroke-width="10px"/></svg>
-            </button>
-            <span style="font-size: 10px; border: 1px solid;" class="w-[18px] h-[18px] rounded-full  flex items-center justify-center absolute top-[-8px] right-[35px] bg-indigo-600 text-white">{{ store?.like.length }}</span>
-          </NuxtLink>
-        </div>
+            <NuxtLink to="/like-page">
+              <button>
+                <!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
+                <svg
+                  enable-background="new 0 0 128 128"
+                  height="23px"
+                  id="Layer_1"
+                  version="1.1"
+                  viewBox="0 0 128 128"
+                  width="23px"
+                  xml:space="preserve"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <path
+                    d="M127,44.205c0-18.395-14.913-33.308-33.307-33.308c-12.979,0-24.199,7.441-29.692,18.276  c-5.497-10.835-16.714-18.274-29.694-18.274C15.912,10.898,1,25.81,1,44.205C1,79,56.879,117.104,64.001,117.104  C71.124,117.104,127,79.167,127,44.205z"
+                    fill="transparent"
+                    stroke="#4f46e5"
+                    stroke-width="10px"
+                  />
+                </svg>
+              </button>
+              <span
+                style="font-size: 10px; border: 1px solid"
+                class="w-[18px] h-[18px] rounded-full flex items-center justify-center absolute top-[-8px] right-[35px] bg-indigo-600 text-white"
+                >{{ store?.like.length }}</span
+              >
+            </NuxtLink>
+          </div>
           <NuxtLink
             :to="`/cart`"
             class="text-sm font-semibold leading-6 text-gray-900 w-[20px] h-[20px]"
@@ -135,7 +180,8 @@
       <div class="lg:hidden" role="dialog" aria-modal="true">
         <!-- Background backdrop, show/hide based on slide-over state. -->
         <div class="fixed inset-0 z-10" v-if="false"></div>
-        <div :style="{'right': menuShow + '%'}"
+        <div
+          :style="{ right: menuShow + '%' }"
           class="menu fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
         >
           <div class="flex items-center justify-between">
@@ -147,33 +193,76 @@
                 alt=""
               />
             </a>
-              <div class="cart-menu-wrapper mt-[10px] relative flex justify-center gap-[30px]">
-            <NuxtLink class="relative" to="/like-page" @click="menuShow = -100">
-            <button>
-              <!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'
-              'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
-              <svg enable-background="new 0 0 128 128" height="20px"
-              id="Layer_1" version="1.1" viewBox="0 0 128 128" width="20px"
-              xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M127,44.205c0-18.395-14.913-33.308-33.307-33.308c-12.979,0-24.199,7.441-29.692,18.276  c-5.497-10.835-16.714-18.274-29.694-18.274C15.912,10.898,1,25.81,1,44.205C1,79,56.879,117.104,64.001,117.104  C71.124,117.104,127,79.167,127,44.205z" fill="transparent" stroke="#4f46e5" stroke-width="10px"/></svg>
-            </button>
-            <span style="font-size: 10px; border: 1px solid;" class="w-[18px] h-[18px] rounded-full  flex items-center justify-center absolute top-[-8px] right-[-10px] bg-indigo-600 text-white">{{ store?.like.length }}</span>
-            </NuxtLink>
-            <NuxtLink @click="menuShow = -100"
-            :to="`/cart`"
-            class="text-sm font-semibold relative leading-6 text-gray-900 w-[20px] h-[20px]"
-          >
-            <cart-icon style="width: 30px"/>
-            <span 
-              style="font-size: 10px"
-              class="w-[18px] h-[18px] bg-indigo-600 text-white rounded-full flex items-center justify-center absolute top-[0] right-[-5px] translate-x-[50%] translate-y-[-50%]"
-              >{{ cartCount }}</span
+            <div
+              class="cart-menu-wrapper mt-[10px] relative flex justify-center gap-[30px]"
             >
-            </NuxtLink>
-             <button style="width: 25px; height: 25px;" class="search-btn mt-[-3px] ml-[3px]" @click="searchSwitchFunc(), menuShow = -100">
-               <svg style="width: 15px;" data-name="Layer 1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21.07,16.83,19,14.71a3.08,3.08,0,0,0-3.4-.57l-.9-.9a7,7,0,1,0-1.41,1.41l.89.89A3,3,0,0,0,14.71,19l2.12,2.12a3,3,0,0,0,4.24,0A3,3,0,0,0,21.07,16.83Zm-8.48-4.24a5,5,0,1,1,0-7.08A5,5,0,0,1,12.59,12.59Zm7.07,7.07a1,1,0,0,1-1.42,0l-2.12-2.12a1,1,0,0,1,0-1.42,1,1,0,0,1,1.42,0l2.12,2.12A1,1,0,0,1,19.66,19.66Z" fill="#6563ff"/></svg>
+              <NuxtLink
+                class="relative"
+                to="/like-page"
+                @click="menuShow = -100"
+              >
+                <button>
+                  <!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
+                  <svg
+                    enable-background="new 0 0 128 128"
+                    height="20px"
+                    id="Layer_1"
+                    version="1.1"
+                    viewBox="0 0 128 128"
+                    width="20px"
+                    xml:space="preserve"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <path
+                      d="M127,44.205c0-18.395-14.913-33.308-33.307-33.308c-12.979,0-24.199,7.441-29.692,18.276  c-5.497-10.835-16.714-18.274-29.694-18.274C15.912,10.898,1,25.81,1,44.205C1,79,56.879,117.104,64.001,117.104  C71.124,117.104,127,79.167,127,44.205z"
+                      fill="transparent"
+                      stroke="#4f46e5"
+                      stroke-width="10px"
+                    />
+                  </svg>
+                </button>
+                <span
+                  style="font-size: 10px; border: 1px solid"
+                  class="w-[18px] h-[18px] rounded-full flex items-center justify-center absolute top-[-8px] right-[-10px] bg-indigo-600 text-white"
+                  >{{ store?.like.length }}</span
+                >
+              </NuxtLink>
+              <NuxtLink
+                @click="menuShow = -100"
+                :to="`/cart`"
+                class="text-sm font-semibold relative leading-6 text-gray-900 w-[20px] h-[20px]"
+              >
+                <cart-icon style="width: 30px" />
+                <span
+                  style="font-size: 10px"
+                  class="w-[18px] h-[18px] bg-indigo-600 text-white rounded-full flex items-center justify-center absolute top-[0] right-[-5px] translate-x-[50%] translate-y-[-50%]"
+                  >{{ cartCount }}</span
+                >
+              </NuxtLink>
+              <button
+                style="width: 25px; height: 25px"
+                class="search-btn mt-[-3px] ml-[3px]"
+                @click="searchSwitchFunc(), (menuShow = -100)"
+              >
+                <svg
+                  style="width: 15px"
+                  data-name="Layer 1"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M21.07,16.83,19,14.71a3.08,3.08,0,0,0-3.4-.57l-.9-.9a7,7,0,1,0-1.41,1.41l.89.89A3,3,0,0,0,14.71,19l2.12,2.12a3,3,0,0,0,4.24,0A3,3,0,0,0,21.07,16.83Zm-8.48-4.24a5,5,0,1,1,0-7.08A5,5,0,0,1,12.59,12.59Zm7.07,7.07a1,1,0,0,1-1.42,0l-2.12-2.12a1,1,0,0,1,0-1.42,1,1,0,0,1,1.42,0l2.12,2.12A1,1,0,0,1,19.66,19.66Z"
+                    fill="#6563ff"
+                  />
+                </svg>
               </button>
-              </div>
-            <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700" @click="menuShow = -100">
+            </div>
+            <button
+              type="button"
+              class="-m-2.5 rounded-md p-2.5 text-gray-700"
+              @click="menuShow = -100"
+            >
               <span class="sr-only">Close menu</span>
               <svg
                 class="h-6 w-6"
@@ -222,9 +311,14 @@
                     </svg> -->
                   </button>
                   <!-- 'Product' sub-menu, show/hide based on menu state. -->
-                  <div class=" menu-category mt-2 space-y-2" id="disclosure-1">
+                  <div class="menu-category mt-2 space-y-2" id="disclosure-1">
                     <NuxtLink to="/" @click="menuShow = -100">home</NuxtLink>
-                    <NuxtLink :to="`/categorys/${item?.slug}`" @click="menuShow = -100" v-for="item in categorys" :key="item">
+                    <NuxtLink
+                      :to="`/categorys/${item?.slug}`"
+                      @click="menuShow = -100"
+                      v-for="item in categorys"
+                      :key="item"
+                    >
                       <span>{{ item?.name }}</span>
                     </NuxtLink>
                   </div>
@@ -267,16 +361,16 @@ import { useStore } from "~/store/store";
 import services from "~/services/services";
 const store = useStore();
 
-const show = ref(false)
-const searchSwitch = ref(false)
-const menuShow = ref(-100)
+const show = ref(false);
+const searchSwitch = ref(false);
+const menuShow = ref(-100);
 
 function searchSwitchFunc() {
-  searchSwitch.value = !searchSwitch.value
+  searchSwitch.value = !searchSwitch.value;
 }
 
 function showFunc() {
-  show.value = !show.value
+  show.value = !show.value;
 }
 
 const cartCount = computed(() => {
@@ -287,37 +381,36 @@ const cartCount = computed(() => {
   return count;
 });
 
-const likeCount = computed(()=> {
-  let like = 0
-  store.like.forEach((el)=> {
-    like = el.like
-  })
-  return like
-})
+const likeCount = computed(() => {
+  let like = 0;
+  store.like.forEach((el) => {
+    like = el.like;
+  });
+  return like;
+});
 
-const categorys = ref({})
+const categorys = ref({});
 
-const getCategorys = async ()=> {
-  const res = await services.getCategorys()
-  categorys.value = res
-}
+const getCategorys = async () => {
+  const res = await services.getCategorys();
+  categorys.value = res;
+};
 
-const searchVal = ref("")
-const searchList = ref({})
+const searchVal = ref("");
+const searchList = ref({});
 
-const search = async ()=> {
-  const res = await services.search(searchVal.value)
-  searchList.value = res
-  console.log(res)
-}
-
-getCategorys()
-search()
+const search = async () => {
+  const res = await services.search(searchVal.value);
+  searchList.value = res;
+};
+onMounted(() => {
+  getCategorys();
+});
 </script>
 
 <style lang="scss" scoped>
 .menu {
- transition: all .5s ease;
+  transition: all 0.5s ease;
 }
 .menu-category {
   display: grid;
@@ -431,7 +524,7 @@ header {
   padding-top: 40px;
   padding-bottom: 20px;
   box-shadow: 1px 1px 10px #c1c1c1;
-  animation: searchOpen .4s forwards;
+  animation: searchOpen 0.4s forwards;
   transform: translateY(-100%);
   overflow: hidden;
   input {
@@ -454,10 +547,12 @@ header {
     top: 20px;
     right: 20px;
   }
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 1200px) {
     ul {
       margin-left: 0;
     }
+  }
+  @media screen and (max-width: 500px) {
     input {
       width: 90%;
     }
@@ -473,13 +568,14 @@ header {
   z-index: 2;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.10);
+  background: rgba(0, 0, 0, 0.1);
 }
 
 @keyframes searchOpen {
   from {
     transform: translateY(-100%);
-  } to {
+  }
+  to {
     transform: translateY(0);
   }
 }
